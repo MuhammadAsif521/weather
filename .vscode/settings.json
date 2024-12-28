@@ -1,0 +1,13 @@
+{
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@ionic/angular/common",
+    "@ionic/angular"
+  ],
+  "cSpell.words": [
+    "apikey",
+    "customdate",
+    "grnd",
+    "Pakpattan",
+    "Weatherapi"
+  ]
+}

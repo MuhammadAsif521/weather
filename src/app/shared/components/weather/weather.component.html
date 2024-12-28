@@ -1,0 +1,62 @@
+<ion-content class="ion-padding">
+    <div class="weather-container">
+      <!-- Header -->
+      <ion-toolbar color="none" class="ion-no-border">
+        <ion-buttons slot="start">
+          <ion-button>
+            <ion-icon slot="start" name="location"></ion-icon>
+            <ion-label>{{ cityName() }}</ion-label>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button>
+            <ion-icon name="search"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+  
+      <!-- Weather Icon -->
+      <div class="weather-icon">
+        <ion-icon 
+        name="{{ weatherIcon }}" 
+        [color]="weatherIconColor" 
+        >
+      </ion-icon>
+      
+      </div>
+  
+      <!-- Weather Info Card -->
+      <ion-card>
+        <ion-card-content class="ion-text-center">
+          <ion-text color="light">
+            {{ todayDate | date: "EEE, dd MMM yy" }} <br />
+            {{ todayDate | date: "hh:mm a" }}
+          </ion-text>
+          <h1 class="temperature">{{ weatherData()?.main?.temp?.toFixed(0) }} ° </h1>
+          <ion-text>{{ weatherDescription }}</ion-text>
+  
+          <ion-row class="ion-justify-content-center ion-margin-top">
+            <ion-col size="auto">
+              <ion-chip>
+                <i class="fas fa-wind ion-margin-end"></i> 
+                <ion-label>Wind | {{ weatherData()?.wind?.speed }} km/h</ion-label>
+              </ion-chip>
+            </ion-col>
+            <ion-col size="auto">
+              <ion-chip>
+                <ion-icon name="water"></ion-icon>
+                <ion-label>Humidity | {{ weatherData()?.main?.humidity }}%</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+  
+      <!-- Forecast Button -->
+      <ion-button expand="block" shape="round" class="forecast-button">
+        Forecast report
+        <ion-icon name="chevron-up" slot="end"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-content>
+  

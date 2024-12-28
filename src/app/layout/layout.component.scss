@@ -1,0 +1,12 @@
+ion-content {
+    --ion-background-color: var(--linear-blue-BG, linear-gradient(192deg, #47BFDF 0%, #4A91FF 100%));
+  }
+  .name{
+    padding-top: 10px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  ion-icon{
+    font-size: 26px;
+    padding-top: 10px;
+  }
