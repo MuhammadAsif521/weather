@@ -9,10 +9,17 @@ export class CustomDatePipe implements PipeTransform {
     if (!date) return '';
     const d = new Date(date);
     
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const dayOfWeek = daysOfWeek[d.getDay()];  
+    // const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    // ${dayOfWeek}
+    
+    // const dayOfWeek = daysOfWeek[d.getDay()];  
+    const month = months[d.getMonth()]; 
     if (format === 'date') {
-      return `${dayOfWeek}, ${d.getDate()}`;
+      return `${d.getDate()}  ${month} `;
     } else {
       return `${(d.getHours() % 12 || 12).toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')} ${d.getHours() >= 12 ? 'PM' : 'AM'}`;
     }

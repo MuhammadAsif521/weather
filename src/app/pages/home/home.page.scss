@@ -1,0 +1,69 @@
+ion-list{
+    background: transparent;
+  }
+  .weatherIcon {
+    margin-top: -20px;
+    background: transparent;
+    height: auto;
+    text-align: center;
+  }
+  
+  img {
+    height: 200px;
+  }
+  .location{
+    font-size: 24px;
+    font-weight: 500;
+    font-family: overpass;
+    padding-bottom: 8px;
+  }
+  .card {
+   max-width: 80%;
+    margin: auto;
+    height: 335px;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+  }
+  .date{
+    text-shadow: -2px 3px 1px rgba(0, 0, 0, 0.10);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  padding-top: 10px;
+  }
+  .temp{
+    text-shadow: -2px 3px 1px rgba(0, 0, 0, 0.10);
+    margin-top: -20px;
+    font-size: 100px;
+    font-family: Overpass;
+    font-style: normal;
+    font-weight: 400;
+  }
+  span{
+    position: absolute;
+    z-index: 2;
+    right: 70px;
+  font-size: 72px;
+  }
+  .description{
+    font-size: 24px;
+    text-transform: capitalize;
+    padding-bottom: 10px;
+  }
+  .tempparam{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 50%;
+    margin: auto;
+    background: rgba(85, 44, 44, 0.2);
+    border-radius: 30px;
+  }
+  
+  @media screen and (min-width:800px) {
+    span{
+      right: 450px;
+    }
+  }

@@ -1,8 +1,9 @@
+import { SplashScreen } from '@capacitor/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-
+import { Keyboard } from '@capacitor/keyboard';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,5 +11,12 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
   imports: [IonApp, IonRouterOutlet,RouterModule,HttpClientModule],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    this.initializeApp();
+  }
+  initializeApp() {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 5000); 
+  }
 }

@@ -1,3 +1,53 @@
-<ion-content>
-<app-layout></app-layout>
+<ion-content class="ion-padding" scrollY="true">
+ <!-- Refresher -->
+ <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+  </ion-refresher-content>
+</ion-refresher>
+  <!-- Search bar -->
+  <div>
+    <form (ngSubmit)="onSearch($event)">
+      <ion-item lines="none" class="search-box">
+        <ion-icon slot="start" name="location" color="primary"></ion-icon>
+        <ion-input placeholder="Enter Your City" type="text" [clearInput]="true" [(ngModel)]="cityName" name="city"
+          required  ></ion-input>
+        <ion-icon slot="end" name="search" (click)="onSearch($event)"></ion-icon>
+      </ion-item>
+    </form>
+  </div>
+
+  <!-- Weather Information -->
+  <div class="weather-container" *ngIf="weatherData()">
+    <!-- Weather Icon -->
+    <div class="weatherIcon">
+      <img [src]="weatherIcon()" class="weatherIcon" />
+      <div class="location">
+        <ion-icon slot="start" name="location" color="warning"></ion-icon>
+        <ion-label>{{ cityName }}</ion-label> &nbsp;
+        <ion-label>{{weatherData()?.sys?.country}}</ion-label>
+      </div>
+    </div>
+
+    <!-- Weather Info Card -->
+    <div class="card">
+      <h3 class="date">Today, {{ todayDate() | customDate:'date' }}</h3>
+      <div class="temp">
+        {{ weatherData()?.main?.temp?.toFixed(0) }} <span>°</span>
+      </div>
+      <div class="description">
+        {{ weatherData()?.weather?.[0]?.description }}
+      </div>
+      <div class="tempparam">
+        <i class="fas fa-wind ion-margin-end"></i> &nbsp;
+        <ion-label>Wind | {{ weatherData()?.wind?.speed }} m/s</ion-label>
+      </div>
+      <br />
+      <div class="tempparam">
+        <ion-icon name="water"></ion-icon> &nbsp;
+        <ion-label>Humidity | {{ weatherData()?.main?.humidity }}%</ion-label>
+      </div>
+    </div>
+  </div>
 </ion-content>
