@@ -17,6 +17,6 @@ export class AppComponent {
   initializeApp() {
     setTimeout(() => {
       SplashScreen.hide();
-    }, 5000); 
+    }, 3000); 
   }
 }

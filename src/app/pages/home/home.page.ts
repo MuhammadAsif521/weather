@@ -1,15 +1,15 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { IonContent, IonIcon, IonList, IonLabel, IonItem, IonInput, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
+import { IonContent, IonIcon, IonLabel, IonItem, IonInput, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { arrowDown, chevronDownCircleOutline, locationOutline, refresh, search, water } from 'ionicons/icons';
+import { chevronDownCircleOutline, locationOutline, refresh, search, water } from 'ionicons/icons';
 import { WeatherResponse } from 'src/app/core/Interfaces/core.interface';
 import { WeatherapiService } from 'src/app/core/services/weatherapi.service';
 import { CustomDatePipe } from 'src/app/core/pipes/customdate.pipe';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { RefreshService } from 'src/app/core/services/refresh.service';
-import { NgIf } from '@angular/common';
-
+import { LoadingController } from '@ionic/angular/standalone';
+import { LoaderService } from 'src/app/core/services/loader.service';
 addIcons({
   location: locationOutline,
   water,
@@ -26,16 +26,14 @@ addIcons({
   standalone: true,
   imports: [
     IonLabel,
-    NgIf,
     IonIcon,
     IonContent,
-    IonList,
     IonItem,
     IonInput,
     IonRefresher,
     IonRefresherContent,
     CustomDatePipe,
-    FormsModule
+    FormsModule,
   ]
 })
 export class HomePage implements OnInit {
@@ -43,6 +41,7 @@ export class HomePage implements OnInit {
   private apiService: WeatherapiService = inject(WeatherapiService);
   private toastService: ToastService = inject(ToastService);
   private refreshService: RefreshService = inject(RefreshService);
+  private loaderService: LoaderService = inject(LoaderService); // Inject LoaderService
 
   public weatherData: WritableSignal<WeatherResponse | undefined> = signal<WeatherResponse | undefined>(undefined);
   public todayDate = signal<string>(new Date().toISOString());
@@ -55,18 +54,36 @@ export class HomePage implements OnInit {
     }
   }
 
-  public fetchWeatherData(cityName: string): void {
+  public async fetchWeatherData(cityName: string): Promise<void> {
     if (!cityName.trim()) {
-      this.toastService.showToast('Please enter a city name');
+      this.weatherData.set(undefined);
+      this.weatherIcon.set('');
       return;
     }
 
-    this.apiService.fetchWeatherData(cityName.trim()).subscribe(results => {
-      if (results) {
-        this.weatherData.set(results);
-        this.weatherIcon.set(`https://openweathermap.org/img/wn/${results.weather[0].icon}@4x.png`);
+    await this.loaderService.showLoader('Fetching weather data...');
+
+    this.apiService.fetchWeatherData(cityName.trim()).subscribe(
+      results => {
+        if (results) {
+          this.weatherData.set(results);
+          this.weatherIcon.set(`https://openweathermap.org/img/wn/${results.weather[0].icon}@4x.png`);
+        } else {
+          this.weatherData.set(undefined);
+          this.toastService.showToast('No data found for this city');
+        }
+      },
+      error => {
+        if (error.status === 404) {
+          this.toastService.showToast('Invalid city name. Please try again.');
+        }
+        this.weatherData.set(undefined);
+        this.weatherIcon.set('');
+      },
+      () => {
+        this.loaderService.hideLoader(); // Ensure loader is dismissed
       }
-    });
+    );
   }
 
   public async doRefresh(event: CustomEvent<any>): Promise<void> {
@@ -76,21 +93,35 @@ export class HomePage implements OnInit {
       return;
     }
 
+    await this.loaderService.showLoader('Refreshing...');
     await this.refreshService.handleRefresh(
       () => this.apiService.fetchWeatherData(this.cityName.trim()),
       () => this.toastService.showToast('Page refreshed successfully!'),
       () => this.toastService.showToast('No internet connection!')
     );
 
+    this.loaderService.hideLoader(); // Ensure loader is dismissed
     event.detail.complete();
   }
 
-  public onSearch(event: Event): void {
+  public async onSearch(event: Event): Promise<void> {
     event.preventDefault();
     if (this.cityName.trim()) {
+      await this.loaderService.showLoader('Searching weather data...');
       this.fetchWeatherData(this.cityName.trim());
+      this.loaderService.hideLoader(); // Ensure loader is dismissed
     } else {
+      this.weatherData.set(undefined);
+      this.weatherIcon.set('');
       this.toastService.showToast('Please enter a city name');
     }
   }
+
+  public onInput(event: any): void {
+    if (!this.cityName.trim()) {
+      this.weatherData.set(undefined);
+      this.weatherIcon.set('');
+    }
+  }
+  
 }

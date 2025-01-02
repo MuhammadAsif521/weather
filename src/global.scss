@@ -1,6 +1,6 @@
 .custom-toast {
-    --background: #ff5733; /* Change this to your desired color */
-    --color: #ffffff; /* Change the text color */
+    --background: #03ffb3; 
+    --color: #2600ff; 
   }
   ion-content {
     --ion-background-color: var(--linear-blue-BG, linear-gradient(192deg, #47BFDF 0%, #4A91FF 100%));
@@ -14,13 +14,16 @@
     font-weight: bold;
     --border-radius: 8px;
     backdrop-filter: blur(10px);
-    width: 95%;
-    margin: auto;
+    width: 70%;
+    float: left;
+    margin-inline-start: 8px;
     text-transform: capitalize;
   }
   ion-button{
-    background: white ;
+    --background: white ;
     color: blue;
+    width: 25%;
+    margin-top: 10px;
     font-size: 16px;
     font-weight: 600;
     border-radius: 8px;
