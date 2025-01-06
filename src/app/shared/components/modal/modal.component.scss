@@ -1,0 +1,109 @@
+ion-content{
+  --ion-background-color: var(--linear-blue-BG, linear-gradient(192deg, #51beb9 0%, #93f077 100%));
+  --padding-top: 10px;
+}
+
+ion-grid {
+  width: 100%;
+  padding: 10px 0;
+}
+
+ion-row {
+  padding-bottom: 60px; 
+}
+
+.weather-item {
+  background: skyblue;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.weather-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Title and time styling */
+.weather-header {
+  margin-bottom: 5px;
+}
+
+.weather-title {
+  font-size: 18px; /* Increased font size for titles */
+  margin-bottom: 5px;
+}
+
+.time {
+  font-size: 16px; /* Increased time font size */
+  color: #6c757d;
+}
+
+/* Weather details container */
+.weather-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Weather icon */
+.weather-icon img {
+  width: 50px; /* Increased icon size */
+  height: 50px;
+}
+
+/* Temperature styles */
+.temperature {
+  font-size: 22px; /* Increased font size for temperature */
+  font-weight: bold;
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 480px) {
+  .weather-item {
+    padding: 8px;
+  }
+
+  .weather-title {
+    font-size: 16px; /* Adjust title size for smaller screens */
+  }
+
+  .time {
+    font-size: 14px; /* Adjust time size */
+  }
+
+  .weather-icon img {
+    width: 40px; /* Adjust icon size */
+    height: 40px;
+  }
+
+  .temperature {
+    font-size: 20px; /* Adjust temperature size */
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .weather-item {
+    padding: 6px;
+  }
+
+  .weather-title {
+    font-size: 14px; /* Smaller titles for very small screens */
+  }
+
+  .time {
+    font-size: 12px; /* Smaller time text */
+  }
+
+  .weather-icon img {
+    width: 35px; /* Smaller icons */
+    height: 35px;
+  }
+
+  .temperature {
+    font-size: 18px; /* Smaller temperature text */
+  }
+}

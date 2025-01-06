@@ -1,17 +1,37 @@
 ion-list {
   background: transparent;
 }
-
+.content {
+  --ion-background-color: var(--linear-blue-BG, linear-gradient(192deg, #47BFDF 0%, #4A91FF 100%));
+  --padding-top: 10px;
+}
+.search{
+  --background: white ;
+  color: blue;
+  width: 25%;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  float: inline-end;
+}
 .weatherIcon {
   margin-top: -20px;
   background: transparent;
-  height: auto;
+  height: 350px;
   text-align: center;
 }
+
+.img {
+  height: auto;
+  width: 50%;
+  margin: auto;
+}
+
 .search-box {
   --background: rgba(160, 79, 79, 0.3);
   color: blue;
-   font-size: 20px;
+  font-size: 20px;
   font-weight: bold;
   --border-radius: 8px;
   backdrop-filter: blur(10px);
@@ -20,9 +40,7 @@ ion-list {
   margin-inline-start: 8px;
   text-transform: capitalize;
 }
-img {
-  height: 200px;
-}
+
 
 .location {
   font-size: 24px;
@@ -81,12 +99,70 @@ span {
   background: rgba(85, 44, 44, 0.2);
   border-radius: 30px;
 }
+.weather-card {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  border-radius: 12px;
+  width: 70%;
+  margin: auto;
+  font-size: 24px;
+  margin-top: 10px;
+  font-weight: 600;
+  height: auto;
+  color: white;
+  padding-bottom: 30px;
+}
+.weather-card ion-label {
+  font-size: 24px;
+  font-weight: 600;
+}
 
+.weather-temp {
+  padding-bottom: 30px;
+}
+
+.weather-description {
+  padding-bottom: 30px;
+}
+.forecast-list{
+  width: 100%;
+  padding-top: 30px;
+}
+.forecast-btn {
+  display: block;
+  margin: 0 auto; 
+  width: 80%; 
+  text-align: center; 
+}
 
 @media screen and (min-width:800px) {
   span {
-    right: 450px;
+    right: 150px;
   }
+
+  .card {
+    float: left;
+    width: 30%;
+    height: 350px;
+    margin-left: 100px;
+  }
+
+  .weather-card {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 12px;
+    width: 20%;
+    float: right;
+    font-size: 32px;
+    font-weight: 600;
+    margin-right: 130px;
+    height: 300px;
+    color: white;
+  }
+ .forecast-btn{
+  width: 30%;
+ }
+
 }
 
 

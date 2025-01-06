@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Hourly Weather Forecast {{cityName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Weather Cards in Swiper -->
+  <swiper-container [breakpoints]="{
+    '300': {'slidesPerView': 3, 'spaceBetween': 10},
+    '680': {'slidesPerView': 5, 'spaceBetween': 15},
+    '764': {'slidesPerView': 6, 'spaceBetween': 10}
+  }" class="i">
+  @for (forecast of forecastData; track forecastData) {
+    <swiper-slide >
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            {{ forecast.dt_txt | date: 'MMM d' }} <!-- Day and date -->
+            <div class="time">
+              {{ forecast.dt_txt | date: 'shortTime' }} <!-- Time -->
+            </div>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="weather-details">
+            <div class="weather-icon">
+              <img [src]="'http://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png'" alt="Weather Icon" />
+            </div>
+            <div class="temperature">
+              {{ forecast.main.temp | number: '1.0-0' }}°C
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  }
+  </swiper-container>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Hourly Weather Forecast</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3" *ngFor="let forecast of forecastData">
+        <div class="weather-item">
+          <div class="weather-header">
+            <div>
+              {{ cityName }}
+             </div>
+            <div class="weather-title">
+              {{ forecast.dt_txt | date: 'MMM d' }}
+            </div>
+            <div class="time">
+              {{ forecast.dt_txt | date: 'shortTime' }}
+            </div>
+          </div>
+          <div class="weather-details">
+            <div class="weather-icon">
+              <img [src]="'http://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png'" alt="Weather Icon" />
+            </div>
+            <div class="temperature">
+              {{ forecast.main.temp | number: '1.0-0' }}°C
+            </div>
+          </div>
+        </div>
+      </ion-col>
+      <!-- <ion-col size="12"></ion-col> -->
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,108 @@
+/* General container styles */
+swiper-container {
+  width: 100%;
+  height: auto;
+  padding: 10px 0;
+}
+
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Ion card styling */
+ion-card {
+  width: 95%; /* Adjust for small screens */
+  max-width: 180px;
+  margin: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+ion-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Title and time styling */
+ion-card-title {
+  font-size: 18px; /* Increased font size for titles */
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+ion-card-title .time {
+  font-size: 16px; /* Increased time font size */
+  color: #6c757d;
+}
+
+/* Weather details container */
+.weather-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Weather icon */
+.weather-icon img {
+  width: 50px; /* Increased icon size */
+  height: 50px;
+}
+
+/* Temperature styles */
+.temperature {
+  font-size: 22px; /* Increased font size for temperature */
+  font-weight: bold;
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 480px) {
+  ion-card {
+    width: 90%;
+    max-width: 160px;
+  }
+
+  ion-card-title {
+    font-size: 16px; /* Adjust title size for smaller screens */
+  }
+
+  ion-card-title .time {
+    font-size: 14px; /* Adjust time size */
+  }
+
+  .weather-icon img {
+    width: 40px; /* Adjust icon size */
+    height: 40px;
+  }
+
+  .temperature {
+    font-size: 20px; /* Adjust temperature size */
+  }
+}
+
+@media screen and (max-width: 320px) {
+  ion-card {
+    width: 100%;
+  }
+
+  ion-card-title {
+    font-size: 14px; /* Smaller titles for very small screens */
+  }
+
+  ion-card-title .time {
+    font-size: 12px; /* Smaller time text */
+  }
+
+  .weather-icon img {
+    width: 35px; /* Smaller icons */
+    height: 35px;
+  }
+
+  .temperature {
+    font-size: 18px; /* Smaller temperature text */
+  }
+}

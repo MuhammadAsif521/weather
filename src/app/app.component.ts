@@ -1,14 +1,13 @@
 import { SplashScreen } from '@capacitor/splash-screen';
-import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { Keyboard } from '@capacitor/keyboard';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   standalone: true,
-  imports: [IonApp, IonRouterOutlet,RouterModule,HttpClientModule],
+  imports: [IonApp, IonRouterOutlet,RouterModule],
 })
 export class AppComponent {
   constructor() {

@@ -1,4 +1,4 @@
-<ion-content class="ion-padding">
+<ion-content class="content">
   <!-- Refresher -->
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingSpinner="circles" refreshingText="Refreshing...">
@@ -14,21 +14,22 @@
           name="city" required>
         </ion-input>
       </ion-item>
-      <ion-button slot="end"  (click)="onSearch($event)"[disabled]="!cityName.trim()">Search</ion-button>
+      <ion-button slot="end" (click)="onSearch($event)" [disabled]="!cityName.trim()" class="search">Search</ion-button>
     </form>
   </div>
 
   <!-- Weather Information -->
   <div class="weatherIcon">
-    <img [src]="weatherIcon()" class="weatherIcon" />
+    <div class="img"><img [src]="weatherIcon()" /></div>
     <div class="location">
       <ion-icon slot="start" name="location" color="warning"></ion-icon>
       <ion-label>{{ cityName }}</ion-label>&nbsp;
       <ion-label>{{ weatherData()?.sys?.country }}</ion-label>
     </div>
   </div>
+
   <div class="card">
-    <h3 class="date">Today, {{ todayDate() | customDate:'date' }}</h3>
+    <h3 class="date">Today, {{ todayDate() | customDate: 'date' }}</h3>
     <div class="temp">
       {{ weatherData()?.main?.temp?.toFixed(0) }} <span>°</span>
     </div>
@@ -45,4 +46,27 @@
       <ion-label>Humidity | {{ weatherData()?.main?.humidity }}%</ion-label>
     </div>
   </div>
+    <!-- Weather Card -->
+    <div class="weather-card">
+      <div class="weather-temp">
+        <i class="fas fa-thermometer-half"></i>&nbsp;
+        <ion-label>Feels Like: {{ weatherData()?.main?.feels_like }}°</ion-label>
+      </div>
+      <div class="weather-description">
+        <i class="fas fa-tachometer-alt"></i>&nbsp;
+        <ion-label>Pressure: {{ weatherData()?.main?.pressure }} Pa</ion-label>
+      </div>
+      <div class="weather-param">
+        <i class="fas fa-temperature-high" style="color:red"></i>&nbsp;
+        <ion-label>Max : {{ weatherData()?.main?.temp_max }} °</ion-label>
+      </div>
+      <br />
+      <div class="weather-param">
+        <i class="fas fa-temperature-low" style="color:blue"></i>&nbsp;
+        <ion-label>Min : {{ weatherData()?.main?.temp_min }}°</ion-label>
+      </div>
+    </div>  
+    <ion-list class="forecast-list">
+    <ion-button class="forecast-btn" (click)="openModal()">View Hourly Forecast</ion-button>
+  </ion-list>  
 </ion-content>

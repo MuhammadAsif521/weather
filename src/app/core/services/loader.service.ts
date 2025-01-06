@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular/standalone';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ export class LoaderService {
 
   constructor(private loadingController: LoadingController) {}
 
-  async showLoader(message: string = 'Loading...', duration?: number): Promise<void> {
+  async showLoader(message: string = 'Loading...'): Promise<void> {
     this.loader = await this.loadingController.create({
       message,
       spinner: 'crescent',

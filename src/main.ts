@@ -6,11 +6,14 @@ import { AppComponent } from './app/app.component';import { provideHttpClient } 
 import { CustomDatePipe } from './app/core/pipes/customdate.pipe';
 import { FormsModule } from '@angular/forms';
 import { importProvidersFrom } from '@angular/core';
+import {ModalController}  from '@ionic/angular'
+import { register } from 'swiper/element/bundle';
+register();
 
 bootstrapApplication(AppComponent, {
   providers: [
     CustomDatePipe,
-    importProvidersFrom( FormsModule),
+    importProvidersFrom( FormsModule,ModalController),
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideHttpClient(),
